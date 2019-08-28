@@ -8,8 +8,12 @@ algorithm from Algorithms Illuminated: Part I by Tim Roughgarden.
 import sys
 
 def third_grade_multiply(a, b):
-    string_a = str(a)
-    string_b = str(b)
+    string_a = str(int(a))
+    string_b = str(int(b))
+
+    #Check if either a or b consists only of zeros
+    if int(a) == 0 or int(b) == 0:
+        zero_product = True
 
     # Pad shorter string with leading zeros if needed
     if len(string_a) < len(string_b):
@@ -78,14 +82,17 @@ def third_grade_multiply(a, b):
 
     # Print visual element
     print((padded_length - len(str(b))) * " " + str(b))
-    print((padded_length - len(str(a)) - 2) * " " + "\u2715" + " " +  str(a))
+    print((padded_length - len(str(a)) - 2) * " " + "\u2715" + " " + str(a))
     line = padded_length * "\u2500"
     print(line)
     if len(str(a)) > 1:
         for i in range(len(str(a))):
             print(intermediate_products[i])
         print(line)
-    print((padded_length - len(final_product[slice_index:])) * " " +
+    if zero_product:
+        print((padded_length - len(str(b))) * " " + len(str(b)) * "0")
+    else:
+        print((padded_length - len(final_product[slice_index:])) * " " +
             final_product[slice_index:])
 
 a = sys.argv[1]
