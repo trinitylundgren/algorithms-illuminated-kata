@@ -2,7 +2,7 @@
 Author: Trinity Lundgren
 Date: 2019-10-09
 Description: Takes as inputs two binary integers at the command line separated
-by spaces. Returns the sum of the binary integers as a list, with the 0th 
+by spaces. Returns the sum of the binary integers as a list, with the 0th
 element representing 2^0, and so on.
 '''
 
@@ -30,6 +30,9 @@ def binary_add(a, b):
         if small_sum < 2:
             c[i] = small_sum
             carry = 0
+        elif small_sum == 3:
+            c[i] = 1
+            carry = 1
         else:
             c[i] = 0
             carry = 1
